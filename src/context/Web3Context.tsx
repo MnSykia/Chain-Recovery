@@ -1,4 +1,5 @@
 // src/context/Web3Context.tsx
+"use client";
 import React, {
   createContext,
   useContext,
