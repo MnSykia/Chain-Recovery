@@ -1,10 +1,10 @@
 "use client";
 import Link from 'next/link';
-import { LucideIcon, Home, PlusBox, UserCheck, History, Settings, HelpCircle } from 'lucide-react';
+import { LucideIcon, Home, PlusSquare, UserCheck, History, Settings, HelpCircle } from 'lucide-react';
 
 const menuItems = [
   { href: '#', label: 'Dashboard', icon: Home },
-  { href: '#', label: 'Report Item', icon: PlusBox },
+  { href: '#', label: 'Report Item', icon: PlusSquare },
   { href: '#', label: 'Claims', icon: UserCheck },
   { href: '#', label: 'History', icon: History },
 ];
