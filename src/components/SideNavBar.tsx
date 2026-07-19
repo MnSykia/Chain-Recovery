@@ -5,7 +5,7 @@ import { LucideIcon, Home, AddBox, VerifiedUser, History, Settings, HelpCircle }
 const menuItems = [
   { href: '#', label: 'Dashboard', icon: Home },
   { href: '#', label: 'Report Item', icon: AddBox },
-  { href: '#', label: 'Claims', icon: VerifiedUser },
+  { href: '#', label: 'Claims', icon: UserCheck },
   { href: '#', label: 'History', icon: History },
 ];
 
