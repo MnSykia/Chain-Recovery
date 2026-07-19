@@ -1,9 +1,11 @@
-# ChainRecovery 🛡️
+# ChainRecovery 
 ### A Blockchain-Powered Lost & Found System
 
 ChainRecovery is a modern lost and found platform that uses blockchain to make the recovery process more transparent, secure, and trustworthy. Instead of relying on centralized records that can be modified or lost, every important action—from reporting an item to verifying ownership—is recorded on-chain.
 
-The project was built with **Next.js**, **Tailwind CSS**, **Ethers.js**, and **Solidity**, making it suitable both as a hackathon prototype and as a foundation for a production-ready application.
+The project was built with **Next.js**, **Tailwind CSS**, **Ethers.js** and **Solidity**.
+
+Most lost-and-found systems rely on trust alone. Records can be edited, ownership disputes are difficult to resolve, and reward payments often happen outside the platform. ChainRecovery addresses these problems by combining a familiar user experience with blockchain-backed transparency. Every report, claim, verification, and reward payment follows a clear, verifiable trail, giving both owners and finders greater confidence throughout the recovery process.
 
 One of the goals behind ChainRecovery was accessibility. If a Web3 wallet such as MetaMask is available, the application connects automatically. If not, it seamlessly switches to a fully interactive mock environment, allowing anyone to explore every feature without needing a blockchain network.
 
@@ -110,7 +112,7 @@ Once recovery is confirmed, escrow rewards are released automatically according 
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 src/
@@ -195,7 +197,7 @@ npm run build
 
 ---
 
-## 📜 Smart Contract Overview
+## Smart Contract Overview
 
 The `ChainRecovery.sol` contract manages the complete lifecycle of an item.
 
@@ -216,9 +218,3 @@ The original reporter or finder reviews the submitted evidence and either approv
 Once the item has been successfully returned, recovery is confirmed on-chain. The escrowed reward is automatically transferred to the finder, and the item's final status becomes **RECOVERED**.
 
 ---
-
-## 🎯 Why ChainRecovery?
-
-Most lost-and-found systems rely on trust alone. Records can be edited, ownership disputes are difficult to resolve, and reward payments often happen outside the platform.
-
-ChainRecovery addresses these problems by combining a familiar user experience with blockchain-backed transparency. Every report, claim, verification, and reward payment follows a clear, verifiable trail, giving both owners and finders greater confidence throughout the recovery process.
