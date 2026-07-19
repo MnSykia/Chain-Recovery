@@ -1,7 +1,7 @@
 # ChainRecovery 
 ### A Blockchain-Powered Lost & Found System
 
-ChainRecovery is a modern lost and found platform that uses blockchain to make the recovery process more transparent, secure, and trustworthy. Instead of relying on centralized records that can be modified or lost, every important action—from reporting an item to verifying ownership—is recorded on-chain.
+ChainRecovery is a modern lost and found platform that uses blockchain to make the recovery process more transparent, secure, and trustworthy. Instead of relying on centralized records that can be modified or lost, every important action is recorded on-chain.
 
 The project was built with **Next.js**, **Tailwind CSS**, **Ethers.js** and **Solidity**.
 
