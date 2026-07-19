@@ -1,0 +1,372 @@
+[
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "itemId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getItem",
+    "outputs": [
+      {
+        "components": [
+          {
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "itemType",
+            "type": "uint8"
+          },
+          {
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "name": "reward",
+            "type": "uint256"
+          },
+          {
+            "name": "imageHash",
+            "type": "string"
+          },
+          {
+            "name": "reporter",
+            "type": "address"
+          },
+          {
+            "name": "resolver",
+            "type": "address"
+          },
+          {
+            "name": "serialNumber",
+            "type": "string"
+          },
+          {
+            "name": "claimsCount",
+            "type": "uint256"
+          }
+        ],
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "name": "itemType",
+        "type": "uint8"
+      },
+      {
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "name": "date",
+        "type": "string"
+      },
+      {
+        "name": "imageHash",
+        "type": "string"
+      },
+      {
+        "name": "serialNumber",
+        "type": "string"
+      }
+    ],
+    "name": "reportItem",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
+        "name": "claimId",
+        "type": "uint256"
+      }
+    ],
+    "name": "rejectClaim",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
+        "name": "claimId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getClaim",
+    "outputs": [
+      {
+        "components": [
+          {
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "name": "claimant",
+            "type": "address"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "approved",
+            "type": "bool"
+          },
+          {
+            "name": "rejected",
+            "type": "bool"
+          },
+          {
+            "name": "resolved",
+            "type": "bool"
+          }
+        ],
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      }
+    ],
+    "name": "submitClaim",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
+        "name": "claimId",
+        "type": "uint256"
+      }
+    ],
+    "name": "verifyClaim",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getItemCount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "itemId",
+        "type": "uint256"
+      }
+    ],
+    "name": "confirmRecovery",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "reporter",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "itemType",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "reward",
+        "type": "uint256"
+      }
+    ],
+    "name": "ItemReported",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "claimId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "claimant",
+        "type": "address"
+      }
+    ],
+    "name": "ClaimSubmitted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "claimId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "resolver",
+        "type": "address"
+      }
+    ],
+    "name": "ClaimVerified",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "claimId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ClaimRejected",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "finder",
+        "type": "address"
+      }
+    ],
+    "name": "ItemRecovered",
+    "type": "event"
+  }
+]
