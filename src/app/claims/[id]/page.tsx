@@ -14,6 +14,17 @@ export default function ClaimHub() {
   const router = useRouter();
   const { items, verifyClaim, rejectClaim, address } = useWeb3();
 
+  // FIX: Safe-guard against undefined context state during production load
+  if (!items) {
+    return (
+      <div className="py-12 text-center max-w-lg mx-auto">
+        <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
+        <h3 className="text-headline-md font-bold mb-2">Connecting to Ledger...</h3>
+        <p className="text-on-surface-variant">Loading network claims state.</p>
+      </div>
+    );
+  }
+
   const itemId = params.id as string;
   const item = items.find(i => i.id === itemId);
 
