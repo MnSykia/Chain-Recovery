@@ -1,124 +1,224 @@
-# ChainRecovery 🛡️ - Blockchain Lost & Found System
+# ChainRecovery 🛡️
+### A Blockchain-Powered Lost & Found System
 
-ChainRecovery is a decentralized, secure, and production-ready **Blockchain Lost & Found System** built for hackathons and production deployments. It bridges physical item tracking with tamper-proof blockchain consensus, offering cryptographic claims, staked escrows, and a verifier-based history ledger.
+ChainRecovery is a modern lost and found platform that uses blockchain to make the recovery process more transparent, secure, and trustworthy. Instead of relying on centralized records that can be modified or lost, every important action—from reporting an item to verifying ownership—is recorded on-chain.
 
-The application is built using the **Next.js App Router**, **Tailwind CSS**, and **Ethers.js**, featuring a dual-mode integration that connects seamlessly to MetaMask or falls back gracefully to a fully interactive mock state for deployment testing and immediate judging evaluation.
+The project was built with **Next.js**, **Tailwind CSS**, **Ethers.js**, and **Solidity**, making it suitable both as a hackathon prototype and as a foundation for a production-ready application.
 
----
-
-## 🚀 Key Features
-
-1. **Active Recovery Feed Dashboard**:
-   - Tab-based navigation showing active "Lost" and "Found" item records.
-   - Live query searching and responsive category filtering (Electronics, Wallets, Keys, Documents).
-   
-2. **Hybrid Wallet Connection**:
-   - Detects `window.ethereum` and bridges to MetaMask or other Web3 wallets.
-   - Dynamic UI dropdown displaying user balance, address, and network.
-   - Automatically fallbacks to **ChainRecovery Local Mock** on static server platforms or during evaluation if a local node RPC is not configured.
-
-3. **Multi-Step Structured Item Submission**:
-   - Standardized 3-step item registration (Item Details -> Media Assets / IPFS mock upload -> Blockchain summary).
-   - Securely computes gas and staking fees (ETH reward pools) for items.
-
-4. **Claims & Verification Marketplace**:
-   - Claimant registry hub where users submit details/descriptions to claim custody.
-   - Smart contracts enable finders/reporters to approve or dispute claims.
-   - Built-in mini conversations between finder and claimant.
-
-5. **Lifecycle Timeline History**:
-   - Chronological nodes logging checkpoints: `Reported` -> `Claimed` -> `Verified` (consensus achieved) -> `Recovered`.
-   - Handshake escrow release paying out reward pool stakes immediately.
+One of the goals behind ChainRecovery was accessibility. If a Web3 wallet such as MetaMask is available, the application connects automatically. If not, it seamlessly switches to a fully interactive mock environment, allowing anyone to explore every feature without needing a blockchain network.
 
 ---
 
-## 🛠️ Architecture & Technology Stack
+## Features
 
-- **Frontend Core**: React 18 / Next.js 14 App Router.
-- **Styling**: Tailwind CSS with custom glassmorphism panels, dark mode defaults, and status glow animations imported from Google Stitch layout blueprints.
-- **Icons**: Lucide React.
-- **Smart Contract Layer**: Solidity contract `contracts/ChainRecovery.sol` defining immutable states, custom errors (`Unauthorized`, `InvalidState`), and events for items, claims, consensus, and stake escrow withdrawals.
-- **Web3 Integration**: Ethers.js for wallet signers, address formatting, and providers.
-- **Effects**: `canvas-confetti` celebrations on successful claims and stake releases.
+### Browse Lost & Found Items
+
+The home dashboard provides a clean feed of both lost and found reports. Users can:
+
+- Switch between Lost and Found listings
+- Search items instantly
+- Filter by categories such as:
+  - Electronics
+  - Wallets
+  - Keys
+  - Documents
+
+Everything updates dynamically to make finding an item as quick as possible.
 
 ---
 
-## 📁 Repository Structure
+### Wallet Support with Automatic Fallback
+
+ChainRecovery works whether you're connected to Web3 or not.
+
+- Connects automatically to MetaMask or any compatible wallet
+- Displays wallet address, balance, and current network
+- Falls back to a local mock blockchain when no wallet or RPC is available
+
+This makes the project easy to demonstrate during hackathons while remaining ready for real blockchain deployment.
+
+---
+
+### Guided Item Reporting
+
+Reporting an item is intentionally simple.
+
+The process is divided into three clear steps:
+
+1. Item details
+2. Image / media upload (mock IPFS integration)
+3. Blockchain summary before submission
+
+If a reward is offered, the application also estimates gas costs and staking values before the transaction is submitted.
+
+---
+
+### Secure Claim Verification
+
+Finding an item is only half the process.
+
+ChainRecovery includes a complete claim workflow where users can:
+
+- Submit ownership claims
+- Describe identifying characteristics
+- Communicate with the finder
+- Receive approval or rejection through the verification process
+
+This reduces fraudulent claims while keeping the recovery process transparent.
+
+---
+
+### Complete Item History
+
+Every item includes a visual timeline showing its entire journey:
+
+```
+Reported
+    ↓
+Claimed
+    ↓
+Verified
+    ↓
+Recovered
+```
+
+Once recovery is confirmed, escrow rewards are released automatically according to the smart contract rules.
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend**
+
+- Next.js 14 (App Router)
+- React 18
+- Tailwind CSS
+- Lucide React Icons
+
+**Blockchain**
+
+- Solidity
+- Ethers.js
+
+**UI & Experience**
+
+- Responsive interface
+- Glassmorphism design
+- Dark mode
+- Animated status indicators
+- Confetti celebrations for successful recoveries
+
+---
+
+## 📂 Project Structure
 
 ```text
-f:\Lost and Found\
-├── src\
-│   ├── app\
-│   │   ├── layout.tsx             # Root layout wrapping Web3 Context and dashboard shell
-│   │   ├── page.tsx               # Feed page with category filters & claim submission modal
-│   │   ├── report\
-│   │   │   └── page.tsx           # Multi-step Report Item form
-│   │   ├── claims\
-│   │   │   └── [id]\
-│   │   │       └── page.tsx       # Claim verification details & actions
-│   │   ├── history\
-│   │   │   └── [id]\
-│   │   │       └── page.tsx       # Lifecycle tracking & escrow release handshake
-│   │   └── globals.css            # Global CSS style declarations
-│   ├── components\
-│   │   ├── Sidebar.tsx            # Left category filter sidebar
-│   │   ├── TopNavBar.tsx          # Dynamic header with connect/disconnect actions
-│   │   └── ItemCard.tsx           # Individual card renderer
-│   ├── context\
-│   │   └── Web3Context.tsx        # Wallet state manager with localStorage persistence
-│   ├── data\
-│   │   └── mockData.ts            # High-fidelity mock seed database
-│   └── types\
-│       └── index.ts               # Shared types for items, claims, and messages
-├── contracts\
-│   └── ChainRecovery.sol          # Solc compiler compatible smart contract code
-├── .env.example                   # Local and testnet env configuration template
-├── tailwind.config.js             # Styling configuration mapping colors & fonts
-├── tsconfig.json                  # Strict TypeScript compiler options
-├── package.json                   # Project packages & command scripts
-└── README.md                      # Presentation documentation
+src/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── report/
+│   ├── claims/
+│   ├── history/
+│   └── globals.css
+│
+├── components/
+│   ├── Sidebar.tsx
+│   ├── TopNavBar.tsx
+│   └── ItemCard.tsx
+│
+├── context/
+│   └── Web3Context.tsx
+│
+├── data/
+│   └── mockData.ts
+│
+└── types/
+    └── index.ts
+
+contracts/
+└── ChainRecovery.sol
+
+.env.example
+package.json
+tailwind.config.js
+tsconfig.json
+README.md
 ```
 
 ---
 
-## 🏎️ Getting Started
+## Getting Started
 
 ### Prerequisites
 
-You need **Node.js** and **npm** installed on your system.
+Before running the project, make sure you have:
+
+- Node.js
+- npm
 
 ### Installation
 
-1. Install project dependencies:
-   ```bash
-   npm install
-   ```
+Install the project dependencies:
 
-2. Copy the configuration file:
-   ```bash
-   cp .env.example .env.local
-   ```
+```bash
+npm install
+```
 
-3. Launch the local Next.js development server:
-   ```bash
-   npm run dev
-   ```
+Create a local environment file:
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to test.
+```bash
+cp .env.example .env.local
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Then open:
+
+```
+http://localhost:3000
+```
+
+---
 
 ### Production Build
 
-Verify production builds compile without error:
+To verify that everything compiles correctly:
+
 ```bash
 npm run build
 ```
 
 ---
 
-## 📜 Smart Contract Logic (`contracts/ChainRecovery.sol`)
+## 📜 Smart Contract Overview
 
-The contract controls items, claims, and rewards:
-- **`reportItem`**: Registers an item with specific categories, locations, and optional reward stakes (deposited in ETH escrow).
-- **`submitClaim`**: Claimant submits physical description proofs. Transitions item state to `CLAIMED`.
-- **`verifyClaim`**: Reporter/Finder validates proof details. Marks claim approved and shifts status to `VERIFIED`.
-- **`confirmRecovery`**: Owner/Claimant confirms physical handover. Transfers locked escrow stake rewards to the finder, transitions status to `RECOVERED`.
+The `ChainRecovery.sol` contract manages the complete lifecycle of an item.
+
+### `reportItem()`
+
+Creates a new lost or found report and stores the associated metadata on-chain. If a reward is specified, the ETH is locked in escrow.
+
+### `submitClaim()`
+
+Allows someone to claim ownership by providing identifying information. The item's status changes to **CLAIMED**.
+
+### `verifyClaim()`
+
+The original reporter or finder reviews the submitted evidence and either approves or rejects the claim. Approved claims move to the **VERIFIED** stage.
+
+### `confirmRecovery()`
+
+Once the item has been successfully returned, recovery is confirmed on-chain. The escrowed reward is automatically transferred to the finder, and the item's final status becomes **RECOVERED**.
+
+---
+
+## 🎯 Why ChainRecovery?
+
+Most lost-and-found systems rely on trust alone. Records can be edited, ownership disputes are difficult to resolve, and reward payments often happen outside the platform.
+
+ChainRecovery addresses these problems by combining a familiar user experience with blockchain-backed transparency. Every report, claim, verification, and reward payment follows a clear, verifiable trail, giving both owners and finders greater confidence throughout the recovery process.
