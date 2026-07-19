@@ -1,3 +1,4 @@
+"use client";
 import TopNavBar from '@/components/TopNavBar';
 import SideNavBar from '@/components/SideNavBar';
 import ItemGrid from '@/components/ItemGrid';
