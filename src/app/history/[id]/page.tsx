@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { useWeb3 } from '../../../context/Web3Context';
+import { useWeb3 } from '@/context/Web3Context';
 import { useParams, useRouter } from 'next/navigation';
 import { Shield, Sparkles, Activity, MapPin, Calendar, Heart, ShieldAlert, Zap, Headphones, CheckCircle2, Lock, ArrowLeft, Loader2, Fingerprint, PenTool, Check } from 'lucide-react';
 import Link from 'next/link';
