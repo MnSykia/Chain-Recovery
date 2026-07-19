@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0b1326;
+    color: #dae2fd;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Glassmorphism Styles */
+.glass-panel, .glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid #334155;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-2px);
+}
+
+/* Status glow classes from design system */
+.status-glow-lost {
+  box-shadow: 0 0 15px rgba(255, 185, 95, 0.15);
+}
+
+.status-glow-lost:hover {
+  box-shadow: 0 0 25px rgba(255, 185, 95, 0.3);
+}
+
+.status-glow-found {
+  box-shadow: 0 0 15px rgba(78, 222, 163, 0.15);
+}
+
+.status-glow-found:hover {
+  box-shadow: 0 0 25px rgba(78, 222, 163, 0.3);
+}
+
+/* Dash timelines from blueprint */
+.timeline-line {
+  background: repeating-linear-gradient(to bottom, #334155 0%, #334155 50%, transparent 50%, transparent 100%);
+  background-size: 2px 12px;
+}
+
+.timeline-line-active {
+  background: #4edea3;
+}
+
+.status-timeline-dashed {
+  background-image: linear-gradient(to bottom, #334155 50%, transparent 50%);
+  background-size: 2px 12px;
+  background-repeat: repeat-y;
+}
+
+/* Pulse animation for active nodes */
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(77, 142, 255, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(77, 142, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(77, 142, 255, 0); }
+}
+
+.pulse-node {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Form inputs styling from blueprint */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #adc6ff !important;
+  box-shadow: inset 0 0 8px rgba(173, 198, 255, 0.1);
+}
+
+/* Glow styling for primary components */
+.glow-primary {
+  box-shadow: 0px 0px 15px rgba(173, 198, 255, 0.15);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b1326;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
