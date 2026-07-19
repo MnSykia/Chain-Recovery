@@ -1,4 +1,5 @@
 // src/app/claims/[id]/page.tsx
+"use client";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useChainRecovery, Claim } from '@/hooks/useChainRecovery';
